@@ -1,0 +1,22 @@
+
+spring:
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/learnJPQL
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC
+        format_sql: 'true'
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+server:
+  port: '9990'
+
+  spring:
+    application:
+      name: LoadBalancerApplication
