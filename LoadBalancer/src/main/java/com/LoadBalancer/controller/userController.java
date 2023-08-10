@@ -5,6 +5,7 @@ import com.LoadBalancer.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -58,4 +59,9 @@ public class userController
         Optional<User> user1 = userService.updateUser(user,id);
         return  user1;
     }
+
+//    we can send any java class as a request body or not
+//    @Parameter(in = ParameterIn.QUERY, description = "List of create data (default: [{\"name\": \"Sample\", \"quantity\": 1}])", example = "[{\"name\": \"Sample\", \"quantity\": 1}]")
+    //this way i am passing dafault value of list
+    //@Parameter(in = ParameterIn.QUERY, description = "List of channel IDs (default: [1, 2, 3])"
 }
