@@ -1,6 +1,7 @@
 package com.LoadBalancer.controller;
 
 import com.LoadBalancer.model.User;
+import com.LoadBalancer.repository.UserRepository;
 import com.LoadBalancer.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -43,6 +44,7 @@ public class userController
         Optional<User> user = userService.findUserById(id);
         return user;
     }
+
 
     @DeleteMapping("/deleteUser/{id}")
     @Tag(name = "Delete user ", description = "Delete User By user_ID")
