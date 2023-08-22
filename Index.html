@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> -->
+     <title>Payment</title>
+</head>
+<body>
+     <!-- <h3 class="my-3">Donate Us</h3>
+     <input id="payment_fields" type="text" class="form-control my2" placeholder="Enter Amount Here">
+     <div class="container text-center">
+          <!-- <button id="payId" class="btn btn-sucess " onclick="paymentStart()">Pay</button> -->
+          <!-- <button id="payId" class="btn btn-sucess ">Pay</button>
+     </div> --> -->
+
+<button id="rzp-button1">Pay with Razorpay</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_9u1QY5KEAlEw1A", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "order_MR8lEKqfnC0CxB", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+
+    document.getElementById('payId').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+</body>
+// <!-- <script>
+//      //first requist to server to create order
+//      const paymentStart = () => {
+//           //alert("Hi");
+//           console.log("Payment get started");
+//           var amount =$("#payment_fields").val();
+//           //var amount = document.getElementById("payment_fields").value;
+//           console.log(amount);
+//           if(amount==""||amount==null)
+//           {
+//                alert("Amount is required");
+//                return;
+//           }
+//           //code to create request to server
+//           $.ajax(
+//                {
+//                     url:'/user/create-order',
+//                     date:JSON.stringify({amount:amount,info:'order_request'}),
+//                     contentType:'application/json',
+//                     type:'POST',
+//                     dataType:'json',
+//                     success:function(response)
+//                     {
+//                          console.log(response);
+//                         //invoked when sucess
+//                     },
+//                     error:function(error)
+//                     {
+//                          //invoked when error
+//                          console.log(error);
+//                          alert("Something went wrong !!");
+//                     }
+//                }
+//           )
+
+//      }
+//      </script> -->
+</html>
